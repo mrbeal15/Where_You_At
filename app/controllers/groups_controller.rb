@@ -20,14 +20,17 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by(id: params[:id])
     @users = @group.users
-    @admin = @group.admin
+    #@admin = @group.admin
     #helper method for joined/unjoined button?
+    render :json => @users
   end
 
 
   def show_map
     @group = Group.find_by(id: params[:id])
     @users = @group.users
+    render :json => @users
+    #does this really need to be here?
   end
 
   def invite

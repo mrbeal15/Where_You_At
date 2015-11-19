@@ -13,16 +13,19 @@
 
 ActiveRecord::Schema.define(version: 20151118171939) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "groupings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.boolean  "joined?"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "joined?",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "groupings", ["group_id"], name: "index_groupings_on_group_id"
-  add_index "groupings", ["user_id"], name: "index_groupings_on_user_id"
+  add_index "groupings", ["group_id"], name: "index_groupings_on_group_id", using: :btree
+  add_index "groupings", ["user_id"], name: "index_groupings_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -44,4 +47,6 @@ ActiveRecord::Schema.define(version: 20151118171939) do
     t.datetime "updated_at",                                             null: false
   end
 
+  add_foreign_key "groupings", "groups"
+  add_foreign_key "groupings", "users"
 end

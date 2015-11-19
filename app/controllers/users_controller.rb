@@ -13,11 +13,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    if @user.created_groups
-      @created_groups = @user.created_groups
-    end
+    # when would we use this?
+    # if @user.created_groups
+    #   @created_groups = @user.created_groups
+    # end
     if @user.groups
       @groups = @user.groups
+      render :json => @groups
+    else
+      render :json => "You are not in any groups"
     end
   end
 

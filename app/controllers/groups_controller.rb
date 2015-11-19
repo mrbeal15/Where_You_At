@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
     @users = @group.users
     render :json => @users
+    #does this really need to be here?
   end
 
   def invite

@@ -28,6 +28,7 @@ class GroupsController < ApplicationController
   def show_map
     @group = Group.find_by(id: params[:id])
     @users = @group.users
+    render :json => @users
   end
 
   def invite

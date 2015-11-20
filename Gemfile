@@ -31,7 +31,7 @@ gem 'rails_12factor'
 
 # Use Unicorn as the app server
 gem 'unicorn'
-gem 'spring' '~>1.4.3'
+gem 'spring', '~>1.4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,7 +45,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 
   gem 'faker'
 end

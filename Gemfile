@@ -31,7 +31,7 @@ gem 'rails_12factor'
 
 # Use Unicorn as the app server
 gem 'unicorn'
-
+gem 'spring' '~>1.4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(1)
     # when would we use this?
     # if @user.created_groups
     #   @created_groups = @user.created_groups

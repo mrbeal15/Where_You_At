@@ -5,12 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
-
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      # probably will redirect
+      user_id = user.id
+      render :json => { id: user_id, status: 200 }
     else
-      #show errors?
+      render :json => { message: "Your credentials did not match", status: 401 }
     end
   end
 

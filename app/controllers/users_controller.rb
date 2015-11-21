@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # end
     if @user.groups
       @groups = @user.groups
-      render :json => @groups
+      render :json => {groups: @groups}
     else
       render :json => "You are not in any groups"
     end

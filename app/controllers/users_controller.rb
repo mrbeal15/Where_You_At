@@ -2,10 +2,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    puts "==============================="
-    p user_params[:password]
-    puts "==============================="
-    # @user.password   = user_params[:password]
     if @user && @user.save
       render :json => { id: @user.id, status: 200 }
     else
@@ -32,8 +28,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    # p "============="
-    p params
     params.permit(:email, :first_name, :password)
   end
 

@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find_by(id: params[:id])
     @group.destroy
-    #redirect to user's show page
   end
 
   def index
@@ -13,11 +12,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    p "===================================="
-    p params
-    @user = find_by(id: params[:id])
-    #make current user helper method
-    @group = Group.new(name: group_params[:name], event: group_params[:event]).merge(admin_id: @user.id)
+    @user = User.find_by(id: group_params[:id])
+    @group = Group.new(name: group_params[:name], event: group_params[:event], admin_id: @user.id)
     if @group.save
       @grouping = Grouping.create(user_id: @user.id, group_id: @group.id, joined?: true)
       render :json => {group: @group, grouping: @grouping}
@@ -29,8 +25,6 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by(id: params[:id])
     @users = @group.users
-    #@admin = @group.admin
-    #helper method for joined/unjoined button?
     render :json => @users
   end
 
@@ -39,7 +33,6 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
     @users = @group.users
     render :json => @users
-    #does this really need to be here?
   end
 
   def invite
@@ -48,7 +41,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :event)
+    params.permit(:name, :event, :id)
   end
 
 

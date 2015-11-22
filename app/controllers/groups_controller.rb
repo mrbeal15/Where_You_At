@@ -6,6 +6,12 @@ class GroupsController < ApplicationController
     #redirect to user's show page
   end
 
+  def index
+    @user = User.find(1)
+    @groups = @user.groups
+    render :json => @groups
+  end
+
   def create
     p "===================================="
     p params

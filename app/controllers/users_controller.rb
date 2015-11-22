@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user && @user.save
-      # not sure what to put here yet because we don't have views yet
-      #create session?
-      #redirect to user's groups
+      render :json => { id: @user.id, status: 200 }
     else
-      @errors = @user.errors.full_messages
+      p @user.errors.full_messages
+      p "not saved"
+      render :json => {status: "User not saved"}
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :phone)
+    params.permit(:email, :first_name, :password)
   end
 
 end

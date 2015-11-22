@@ -13,11 +13,14 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @user = current_user
+    p "===================================="
+    p params
+    @user = find_by(id: params[:id])
     #make current user helper method
     @group = Group.new(name: group_params[:name], event: group_params[:event]).merge(admin_id: @user.id)
     if @group.save
       @grouping = Grouping.create(user_id: @user.id, group_id: @group.id, joined?: true)
+      render :json => {group: @group, grouping: @grouping}
     else
       @errors = @group.errors.full_messages
     end

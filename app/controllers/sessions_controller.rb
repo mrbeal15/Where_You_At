@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       user_id = user.id
       render :json => { id: user_id, status: 200 }
-    else
-      render :json => { message: "Your credentials did not match", status: 401 }
     end
   end
 

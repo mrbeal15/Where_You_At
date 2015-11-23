@@ -17,8 +17,6 @@ class GroupsController < ApplicationController
     if @group.save
       @grouping = Grouping.create(user_id: @user.id, group_id: @group.id, joined?: true)
       render :json => {group: @group, grouping: @grouping}
-    else
-      @errors = @group.errors.full_messages
     end
   end
 

@@ -4,10 +4,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user && @user.save
       render :json => { id: @user.id, status: 200 }
-    else
-      p @user.errors.full_messages
-      p "not saved"
-      render :json => {status: "User not saved"}
     end
   end
 

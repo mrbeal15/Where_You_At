@@ -14,10 +14,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    # when would we use this?
-    # if @user.created_groups
-    #   @created_groups = @user.created_groups
-    # end
     if @user.groups
       @groups = @user.groups
       render :json => {groups: @groups}
@@ -27,8 +23,10 @@ class UsersController < ApplicationController
   end
 
   def coordinates
-    @
-
+    @user = User.find_by(id: params[:id])
+    if @user
+      @user.update_attributes(coord_params)
+    end
   end
 
   private

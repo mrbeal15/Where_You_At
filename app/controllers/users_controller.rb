@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user
       @user.update_attributes(coord_params)
+      render :json => {status: 200}
     end
   end
 

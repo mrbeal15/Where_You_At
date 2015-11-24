@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+    render :json => {users: @users}
+  end
+
   def create
     @user = User.new(user_params)
     if @user && @user.save
@@ -8,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(1)
+    @user = User.find_by(id: params[:id])
     # when would we use this?
     # if @user.created_groups
     #   @created_groups = @user.created_groups

@@ -21,10 +21,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def coordinates
+    @
+
+  end
+
   private
 
   def user_params
     params.permit(:email, :first_name, :last_name, :password)
+  end
+
+  def coord_params
+    params.permit(:lat, :lng)
   end
 
 end

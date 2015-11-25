@@ -2,11 +2,16 @@ class GroupingsController < ApplicationController
 
   def create
     @user = User.find_by(email: grouping_params[:email])
-    @group = Group.find(params[:id])
-    Rails.logger.info(@group.inspect)
-    Rails.logger.info(@user.inspect)
+    @group = Group.find_by(name: params[:id])
+    puts "============PARAMS==========="
+    p grouping_params
+    puts "=============================="
+
+    p '*****************GROUP***********'
+    p @group
+    p '******************USER***********'
+    p @user
     @grouping = Grouping.create(group_id: @group.id, user_id: @user.id, joined?: true)
-    Rails.logger.info(@grouping.inspect)
     if @grouping
       render :json => @grouping
     end

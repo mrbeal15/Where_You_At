@@ -22,6 +22,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by(name: params[:id])
+    p "***************GROUP*******************"
+    p @group
+    p "**************************"
     @users = @group.users
     render :json => {users: @users}
   end

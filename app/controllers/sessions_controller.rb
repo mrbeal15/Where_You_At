@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    # probably will redirect
   end
 
 

@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @user = User.find(1)
+    @user = User.find(id: params[:id])
     @groups = @user.groups
     render :json => @groups
   end
